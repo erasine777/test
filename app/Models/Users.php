@@ -13,8 +13,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $remember_token
  * @property string $created_at
  * @property string $updated_at
+ * @property Test[] $tests
  */
-class User extends Model
+class Users extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
@@ -28,4 +29,11 @@ class User extends Model
      */
     protected $fillable = ['name', 'email', 'email_verified_at', 'password', 'remember_token', 'created_at', 'updated_at'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tests()
+    {
+        return $this->hasMany('App\Test', 'users_id');
+    }
 }
